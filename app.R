@@ -220,10 +220,10 @@ server <- function(input, output, session) {
                                    round((safe_as_numeric(your_result) - mean_all_labs) / sd_all_labs, 2), NA)
 
         bias_method <- ifelse(!is.na(your_result) && !is.na(mean_method) && !is.na(mean_method),
-                              round(((mean_method - safe_as_numeric(your_result)) / safe_as_numeric(mean_method)) * 100, 2), NA)
-
+                              round(((safe_as_numeric(your_result) - mean_method) / mean_method) * 100, 2), NA)
+        
         bias_all_labs <- ifelse(!is.na(your_result) && !is.na(mean_all_labs) && !is.na(mean_all_labs),
-                                round(((mean_all_labs - safe_as_numeric(your_result)) / safe_as_numeric(mean_all_labs)) * 100, 2), NA)
+                                round(((safe_as_numeric(your_result) - mean_all_labs) / mean_all_labs) * 100, 2), NA)
 
         # Add the new row to final results
         new_row <- data.frame(
